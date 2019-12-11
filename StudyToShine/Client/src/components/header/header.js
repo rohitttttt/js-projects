@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import headerstyle from  '../header/header.css';
 import logo from '../header/logo3.png';
+import {Button} from 'react-bootstrap';
+import '../site.css';
+
+
 
 
 export default class Header extends Component {
@@ -9,24 +12,24 @@ export default class Header extends Component {
         return(
             <div>
         <div className="container-fluid">
-          <div class="row" id="header-bar">
+          <div class="row" id="headerbar">
              <div class="col-9">
 
              </div>
-             <div class="col">
-                <a className={headerstyle.headerbar} href="/" title="study2shine.com"> Student</a>
+             <div className="col">
+                <a className="headerbar" href="/" title="study2shine.com"> Student</a>
               </div>
-              <div class="col">
-                  <a className={headerstyle.headerbar} href="/" title="study2shine.com"> Teacher/Tutor</a>
+              <div className="col">
+                  <a className="headerbar" href="/" title="study2shine.com"> Teacher/Tutor</a>
               </div>               
-                <div class="col">
-                <a className={headerstyle.headerbar} href="/" title="study2shine.com"> Parent</a>
+                <div className="col">
+                <a className="headerbar" href="/" title="study2shine.com"> Parent</a>
              </div>
           </div>
   </div>
-    <div class="container-fluid header-color">
+    <div className="container-fluid headercolor">
       <div class="row">
-          <div class="col-lg-2 col-md-2 col-sm-12">
+          <div className="col-lg-2 col-md-2 col-sm-12">
           <a href="/" title="study2shine.com">
             <img src={logo} alt="study2shine" height="120px" width="120px" class="img-fluid" />            
           </a>
@@ -35,23 +38,24 @@ export default class Header extends Component {
           <h1 class="logo-heading">
             Study to Shine             
           </h1>
-          <span class="logo-quote-align">-Take charge of your learning</span>
+          <span className="logoquotealign">-Take charge of your learning</span>
         </div>
         <div class="col-lg-3 col-md-1 col-sm-12">           
             <div class="row no-gutters header-search">
               <div class="col">
-                  <input class="form-control box-shadow-custom" type="search" placeholder="Search..." aria-label="Search"/>
+                  <input className="form-control boxshadowcustom" type="search" placeholder="Search..." aria-label="Search"/>
               </div>
               <div class="col-auto">
-                  <button className={headerstyle.buttoncolor + ' ' + headerstyle.boxshadowcustom} type="button">
-                      <i class="fa fa-search"></i>
-                  </button>
+                  <Button className="btn buttoncolor boxshadowcustom">
+                      <i className="fa fa-search"></i>
+                  </Button>
               </div>
           </div>
         </div>
-        <div className={headerstyle.headerbutton}>
-          <button className={headerstyle.buttoncolor} type="submit">Login | Register</button>         
+        <div className="col-lg-2 col-md-1 col-sm-12 headerbutton">
+          <Button className="btn buttoncolor mr-2" type="submit">Login | Register</Button>         
         </div>
+       
       </div>
     </div>
 </div>
