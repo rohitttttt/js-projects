@@ -27,7 +27,7 @@ export default class Footer extends Component {
           <button className="btn" id ="button-color" data-backdrop="static"  onClick={this.togglePopup.bind(this)}>Join now</button>
           {this.state.showPopup ?  
 <Login  
-          text='Click "Close Button" to hide popup'  
+          text=''  
           closePopup={this.togglePopup.bind(this)}  
 />  
 : null  
