@@ -16,7 +16,7 @@ export default class Aboutus extends Component {
       </div>
       <div className="row mb-5">
         <div className="col-lg-6 col-md-6 col-sm-1">
-          <img src={la} alt="test" class="img-fluid" />
+          <img src={la} alt="test" className="img-fluid" />
         </div>
         <div className="col-lg-6 col-md-6 col-sm-1">
           <h1 className="text-capitalize">who are we?</h1>
@@ -29,7 +29,7 @@ export default class Aboutus extends Component {
             nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
             deserunt mollit anim id est laborum.
           </p>
-          <button className="btn btncolor">Get Started!</button>
+          <button className="btn" id ="button-color">Get Started!</button>
         </div>
       </div>
     </section>

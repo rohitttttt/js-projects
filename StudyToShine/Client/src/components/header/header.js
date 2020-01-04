@@ -45,14 +45,14 @@ export default class Header extends Component {
                   <input className="form-control box-shadow-custom" type="search" placeholder="Search..." aria-label="Search"/>
               </div>
               <div className="col-auto">
-                  <button className="btn button-color box-shadow-custom" type="button">
+                  <button className="btn box-shadow-custom" id ="button-color" type="button">
                       <i className="fa fa-search"></i>
                   </button>
               </div>
           </div>
         </div>
         <div className="col-lg-2 col-md-1 col-sm-12 header-button">
-          <button className="btn button-color mr-2" type="submit">Login | Register</button>         
+          <button className="btn mr-2" id ="button-color"type="submit">Login | Register</button>         
         </div>
        
       </div>

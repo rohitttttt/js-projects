@@ -2,64 +2,45 @@ import React, { Component } from 'react';
 import facebook from '../footer/fb.png';
 import twitter from '../footer/twitter.png';
 import instagram from '../footer/insta.png';
+import Login from '../login/login';
 import '../site.css';
 
 export default class Footer extends Component {
+    constructor(props){  
+        super(props);  
+        this.state = { showPopup: false };  
+        }  
+        togglePopup() {  
+            this.setState({  
+                 showPopup: !this.state.showPopup  
+            });  
+             }  
     render()
     {
         return(
             <div>
-              <section class="header-color">
+              <section className="header-color">
       <article className="py-5">
         <div className="text-capitalize text-center">
           <h3 className="display-4">Contribute</h3>
           <p>be a part of Study to Shine family.</p>
-          <button className="btn button-color" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal">Join now</button>
+          <button className="btn" id ="button-color" data-backdrop="static"  onClick={this.togglePopup.bind(this)}>Join now</button>
+          {this.state.showPopup ?  
+<Login  
+          text='Click "Close Button" to hide popup'  
+          closePopup={this.togglePopup.bind(this)}  
+/>  
+: null  
+}  
         </div>
 
-        <div className="modal fade" id="myModal">
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-  
-            
-              <div className="modal-header header-color">
-                <h4 className="modal-title">Signup</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-  
-              <div className="modal-body">
-                  <form action="/action_page.php">
-                    <div className="form-group">
-                      <label for="email">Email address:</label>
-                      <input type="email" className="form-control" id="email" autocomplete="off" />
-                    </div>
-                    <div className="form-group">
-                      <label for="pwd">Password:</label>
-                      <input type="password" className="form-control" id="pwd"/>
-                    </div>
-                    <div className="form-group form-check">
-                      <label className="form-check-label">
-                        <input className="form-check-input" type="checkbox"/> Remember me
-                      </label>
-                    </div>
-                    <button type="submit" class="btn button-color">Register</button>
-                  </form>
-              </div>
-  
-              <div class="modal-footer header-color">
-                <button type="button" class="btn btn-secondary button-color" data-dismiss="modal">Close</button>
-              </div>
-  
-            </div>
-          </div>
-        </div>
       </article>
     </section>
                <footer>
       <div id="copyright" className="header-color">
         <div className="row pt-5">
           <div className="col-lg-3 col-md-2 col-sm-12">                  
-                  <ul class="ul-footer">
+                  <ul className="ul-footer">
                     <li>Home</li>
                     <li>About</li>
                     <li>ContactUs</li>
@@ -97,15 +78,15 @@ export default class Footer extends Component {
                  </div>
               <div className="col-lg-6 col-md-6 col-sm-12 col-12"> &copy; Study to Shine | A Venture of ABHYAST Private Limited </div>
               
-              <div class="col-lg-3 col-md-3 col-sm-12 col-12 link-align-right">
+              <div className="col-lg-3 col-md-3 col-sm-12 col-12 link-align-right">
                 <a href="https://www.facebook.com/gauravg07" aria-label="Follow us on Facebook">
                 <img src={facebook} alt="facebook" height="30px" width="30px" className="img-fluid" />
                 </a>
                 <a href="https://twitter.com/gauravg07" aria-label="Follow us on Twitter">
-                  <img src={twitter} alt="twitter" height="30px" width="30px" class="img-fluid" />
+                  <img src={twitter} alt="twitter" height="30px" width="30px" className="img-fluid" />
                 </a>
                 <a href="https://instagram.com/gauravg07" aria-label="Follow us on Instagram">
-                  <img src={instagram} alt="instagram" height="30px" width="30px" class="img-fluid" /    >
+                  <img src={instagram} alt="instagram" height="30px" width="30px" className="img-fluid" /    >
                 </a>
               </div>
           </div>      
