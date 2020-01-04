@@ -27,10 +27,10 @@ export default class Header extends Component {
           </div>
   </div>
     <div className="container-fluid header-color">
-      <div class="row">
+      <div className="row">
           <div className="col-lg-2 col-md-2 col-sm-12">
           <a href="/" title="study2shine.com">
-            <img src={logo} alt="study2shine" height="120px" width="120px" class="img-fluid" />            
+            <img src={logo} alt="study2shine" height="120px" width="120px" className="img-fluid" />            
           </a>
         </div>
         <div className="col-lg-5 col-md-5 col-sm-12">
