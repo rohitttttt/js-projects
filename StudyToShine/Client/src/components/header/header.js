@@ -12,8 +12,8 @@ export default class Header extends Component {
         return(
             <div>
         <div className="container-fluid">
-          <div class="row" id="headerbar">
-             <div class="col-9">
+          <div className="row" id="headerbar">
+             <div className="col-9">
 
              </div>
              <div className="col">
@@ -27,7 +27,7 @@ export default class Header extends Component {
              </div>
           </div>
   </div>
-    <div className="container-fluid headercolor">
+    <div className="container-fluid header-color">
       <div class="row">
           <div className="col-lg-2 col-md-2 col-sm-12">
           <a href="/" title="study2shine.com">
