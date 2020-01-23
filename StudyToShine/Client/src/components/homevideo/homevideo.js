@@ -24,7 +24,7 @@ export default class HomeVideo extends Component {
     render()
     {
       let url1 , url2, url3;
-      if(this.state.videourl.videos)
+      if(this.state.videourl != null)
       {
        url1 = this.state.videourl.videos[0].url;
        url2 = this.state.videourl.videos[1].url;
