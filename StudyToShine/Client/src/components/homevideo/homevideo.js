@@ -8,30 +8,38 @@ export default class HomeVideo extends Component {
     super(props);
 
     this.state = {
-     videodetail: null
+      videourl: null
     };
   }
   async componentDidMount() {
     // Load async data.
     let userData = await API.get('/videos');
-    if(userData)
+    if(userData.data.message === "success")
     {
-      this.setState({videourl : userData.data})
-      console.log(userData.data);
+      debugger;
+      this.setState({videourl : userData.data.data});
+      //console.log(this.state.videourl);
     }
   }
     render()
     {
-      let url1, url2 ,url3;
-      if(this.state.videourl)
+      let url1 , url2, url3;
+      if(this.state.videourl.videos)
       {
-        url1 = <video src={this.state.videourl[0].url} type="video/mp4" controls height="150" width="418">
+       url1 = this.state.videourl.videos[0].url;
+       url2 = this.state.videourl.videos[1].url;
+       url3 = this.state.videourl.videos[2].url;
+      }
+      
+      if(url1 && url2 && url3)
+      {
+        url1 = <video src={url1} type="video/mp4" controls height="150" width="418">
         Your browser doesn't support videos!
        </video>;
-       url2 = <video src={this.state.videourl[1].url} type="video/mp4" controls height="150" width="418">
+       url2 = <video src={url2} type="video/mp4" controls height="150" width="418">
        Your browser doesn't support videos!
       </video>;
-      url3 = <video src={this.state.videourl[2].url} type="video/mp4" controls height="150" width="418">
+      url3 = <video src={url3} type="video/mp4" controls height="150" width="418">
       Your browser doesn't support videos!
      </video>;
       } 
