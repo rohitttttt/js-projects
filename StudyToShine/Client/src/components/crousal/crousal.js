@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import la from '../crousal/la.jpg';
+import la from '../crousal/banner-1.jpeg';
 import chicago from '../crousal/chicago.jpg';
-import ny from '../crousal/ny.jpg';
+import ny from '../crousal/banner-2.jpeg';
 import '../site.css';
 import Carousel from 'react-bootstrap/Carousel'
 
