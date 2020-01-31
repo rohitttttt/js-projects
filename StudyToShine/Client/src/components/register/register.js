@@ -101,7 +101,7 @@ class Register extends React.Component {
     handleCnfPasswdChange(event){
         this.setState({cnfPasswd:event.target.cnfPasswd});
     }
-    handleGenderChang(event){
+    handleGenderChange(event){
         this.setState({gender:event.target.gender});
     }
     handleSignupasChange(event){
@@ -246,7 +246,7 @@ class Register extends React.Component {
                            </div>   
                         </div>
                         <div className="form-group">
-                         <button type="submit" value="SIGN IN" className="btn button-color">SIGN UP</button>                          
+                         <button type="submit" id="button-color" value="SIGN IN" className="btn">SIGN UP</button>                          
                       </div>
                      </form>
                   </div>
