@@ -1,6 +1,7 @@
 import React from 'react';  
 import '../site.css';  
 import { Button } from 'reactstrap';
+import Register from '../register/register';
 import API from "../../utils/api";
 
 class Login extends React.Component {  
@@ -11,12 +12,19 @@ class Login extends React.Component {
         this.state = {
          token: null,
          value:'',
-         passwd: ''
+         passwd: '',
+         showRegisterPopup: false
         };
         this.checkUser = this.checkUser.bind(this);
         this.handleEmailChange= this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
       }
+
+      toggleRegisterPopup() {  
+        this.setState({  
+          showRegisterPopup: !this.state.showRegisterPopup  
+        });  
+         } 
 
       async checkUser() {
         // Load async data.
@@ -34,7 +42,7 @@ class Login extends React.Component {
         {
             return alert('login failed');
         }
-        if(isUserExist && isUserExist.data && isUserExist.data.status === "success")
+        if(isUserExist && isUserExist.data && isUserExist.data.status === "0")
         {
           this.setState({token : isUserExist.data.data.token})
           console.log('token' + isUserExist.data.data.token);
@@ -84,7 +92,14 @@ return (
                          </div>
                          <div className="form-group">
                             <button type="submit" id="button-color" value="SIGN IN" className="btn" onClick={this.checkUser}>SIGN IN</button>                        
-                            <a href="#" className="btn button-color" id="button-color" data-toggle="modal" data-backdrop="static" data-target="#signupPopupBox" data-keyboard="false">Register Now</a>
+                            <a className="btn button-color" id="button-color"  onClick={this.toggleRegisterPopup.bind(this)}>Register Now</a>
+                            {this.state.showRegisterPopup ?  
+                            <Register  
+                                      text=''  
+                                      closePopup={this.toggleRegisterPopup.bind(this)}  
+                            />  
+                            : null  
+                            }  
                          </div>
                          <a href="#">Forgot Password?</a>
                           

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../site.css';
 import API from "../../utils/api";
+import { Button } from 'reactstrap';
 
 class Register extends React.Component {
     constructor(props){
@@ -77,7 +78,7 @@ class Register extends React.Component {
             return alert('user registration failed!');
         }
         debugger;
-        if(userRegistered && userRegistered.data && userRegistered.data.status === "success")
+        if(userRegistered && userRegistered.data && userRegistered.data.status === "0")
         {
           alert('Registration Successfull!');          
         }
@@ -131,13 +132,17 @@ class Register extends React.Component {
     render() {
         return (
             <div>
+              <div className='popup'>
+              <div className='popup\_inner-background'>
+              <h1>{this.props.text}</h1>
               <a href="/" className="btn button-color" id="btnRegister" data-toggle="modal" data-backdrop="static" data-target="#signupPopupBox" data-keyboard="false">Register Now</a>
-              <div className="modal fade" id="signupPopupBox"> 
-              <div className="modal-dialog modal-dialog-centered">
+              <div> 
+              <div className="modal-dialog">
                  <div className="modal-content">
                      <div className="modal-header">
                      <h4 className="modal-title">Sign Up</h4>
-                    <button type="button" className="close" data-dismiss="modal" data-target="signinupPopupBox">&times;</button>                    
+                    {/* <button type="button" className="close" data-dismiss="modal" data-target="signinupPopupBox">&times;</button>                     */}
+                    <Button onClick={this.props.closePopup} close></Button>
                   </div>
                      <div className="modal-body">
                      <form>
@@ -260,6 +265,8 @@ class Register extends React.Component {
                   </div>
                   </div>
               </div>
+            </div>
+            </div>
             </div>
             </div>
         )
