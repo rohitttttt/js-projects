@@ -6,9 +6,24 @@ import '../site.css';
 
 
 export default class Header extends Component {
+  constructor(props) {
+    super(props);
+    window.sessionStorage.clear();
+  }
     render()
     {
-        return(
+      let loginbuton;
+      if(window.sessionStorage.getItem("Status") === "0")
+      {
+        loginbuton = <span>Hello { + ' '+ window.sessionStorage.getItem("FirstName")}</span>
+      }
+      else
+      {
+        
+        loginbuton = <button className="btn mr-2" id ="button-color"type="submit">Login | Register</button>;
+      } 
+      
+      return(
             <div>
         <div className="container-fluid">
           <div className="row" id="header-bar">
@@ -52,7 +67,7 @@ export default class Header extends Component {
           </div>
         </div>
         <div className="col-lg-2 col-md-1 col-sm-12 header-button">
-          <button className="btn mr-2" id ="button-color"type="submit">Login | Register</button>         
+          {loginbuton}         
         </div>
        
       </div>

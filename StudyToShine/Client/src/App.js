@@ -5,10 +5,12 @@ import Crousal from './components/crousal/crousal';
 import About from './components/aboutus/aboutus';
 import HomeVideo from './components/homevideo/homevideo';
 import Footer from './components/footer/footer';
+//import Register from './components/register/register';
 
 function App() {
   return (
     <div className="App">
+      {/* <Register/> */}
       <Header/>
       <Menu/>
       <Crousal/>

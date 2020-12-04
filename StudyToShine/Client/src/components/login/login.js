@@ -13,7 +13,10 @@ class Login extends React.Component {
          token: null,
          value:'',
          passwd: '',
-         showRegisterPopup: false
+         showRegisterPopup: false,
+         status:'',
+         firstName:'',
+         lastName:''
         };
         this.checkUser = this.checkUser.bind(this);
         this.handleEmailChange= this.handleEmailChange.bind(this);
@@ -44,9 +47,17 @@ class Login extends React.Component {
         }
         if(isUserExist && isUserExist.data && isUserExist.data.status === "0")
         {
-          this.setState({token : isUserExist.data.data.token})
-          console.log('token' + isUserExist.data.data.token);
-          alert('LoginSuccessfull');
+          
+          this.setState({status:isUserExist.data.status , firstName : isUserExist.data.data.user.firstName});
+          alert('Login Successfull' + ' ' + 'Hello' + isUserExist.data.data.user.firstName + ' ' + isUserExist.data.data.user.lastName + '!!');
+          debugger;
+          window.sessionStorage.setItem("FirstName", isUserExist.data.data.user.firstName);
+          window.sessionStorage.setItem("LastName", isUserExist.data.data.user.lastName);
+          window.sessionStorage.setItem("Status", isUserExist.data.status);
+         // console.log('token' + isUserExist.data.user.token);
+         //this.forceUpdate();
+          //this.setState({token : isUserExist.data.data.token})
+         
           
         }
         else
