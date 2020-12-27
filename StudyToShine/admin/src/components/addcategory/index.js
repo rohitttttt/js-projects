@@ -1,7 +1,11 @@
 import React, {state,Component} from "react";
+import { Redirect } from 'react-router-dom';
 import './index.css';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import API from "../../utils/api";
+import '../../../node_modules/react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+//import Loader from 'react-loader-spinner';
+import Loader from 'react-loader';
 import { data } from "jquery";
 
 class AddCategory extends Component {
@@ -13,6 +17,7 @@ class AddCategory extends Component {
       level: "Foundation",
       theme: "I Learn",
       file:"",
+      isLoader:true
     };
     this.onLevelChange=this.onLevelChange.bind(this);
    };
@@ -48,8 +53,10 @@ class AddCategory extends Component {
     };
 
    handleSubmit = e => {
+    this.setState({isLoader : false});
     e.preventDefault();
-
+    if(this.state.categoryName !== '')
+    {
     const data = new FormData();
       data.append('theme',this.state.theme);
       data.append('level',this.state.level);
@@ -69,14 +76,68 @@ class AddCategory extends Component {
         'content-type': 'multipart/form-data'
       }
     })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(res =>  {
+        alert('Record Added Successfully');
+        this.setState({isLoader : true});
+        console.log(res)
+      
+      })
+      .catch(err => {
+        this.setState({isLoader : true});
+        console.log(err)});
+    }
+    else
+    {
+      this.setState({isLoader : true});
+      alert('Please fill all the required field');
+    }
    };
 
    
    render() {
+    var options = {
+      lines: 13,
+      length: 20,
+      width: 10,
+      radius: 30,
+      scale: 1.00,
+      corners: 1,
+      color: '#000',
+      opacity: 0.25,
+      rotate: 0,
+      direction: 1,
+      speed: 1,
+      trail: 60,
+      fps: 20,
+      zIndex: 2e9,
+      top: '50%',
+      left: '50%',
+      shadow: false,
+      hwaccel: false,
+      position: 'absolute'
+  };
     return (  
         <section>
+          <div style={{textAlign : 'center'}}>
+          {/* <Loader
+    type="Puff"
+    color="#00BFFF"
+    height={100}
+    width={100}
+    visible= {this.state.isLoader}
+   // timeout={3000} //3 secs
+
+ /> */}
+ <Loader loaded={this.state.isLoader} style={{position: 'fixed',
+  top: '0',
+  right: '0',
+  bottom: '0',
+  left: '',
+  background: 'none repeat scroll 0 0 black',
+  opacity:'0.5',
+  zIndex: '9999',
+  }}></Loader>
+          </div>
 <div className="container-fluid content mt-4">
 <form onSubmit={this.handleSubmit}>
 <div className="row">

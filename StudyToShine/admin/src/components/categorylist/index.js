@@ -2,6 +2,7 @@ import React, { useEffect,useState } from "react";
 import './index.css';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import {A} from 'hookrouter';
+import Loader from 'react-loader';
 import API from "../../utils/api";
 import $ from 'jquery';
 
@@ -15,9 +16,6 @@ const showMenu = (catClassName) => {
    $('div').closest(catClassName).toggleClass("show");
    console.log('Hello')
 };
-
-
-
 
 
 window.onclick = function(event) {
@@ -43,6 +41,9 @@ const CategoryList = () => {
   const [categoryList ,setcategoryList ]= useState([]);
   const [showEditCategoryList ,seteditCategoryList ]= useState(['false']);
   const [currentIndex , setCurrentIndex] = useState(-1);
+  const [deleteselectedCategory , setselecteddeleteCategory] = useState([]);
+  const [isLoader , setisLoader] = useState(true);
+
 
   const onFileChange = (event) => { 
      
@@ -51,6 +52,39 @@ const CategoryList = () => {
    
    
   };
+  const onhandleDelete = () => {
+    setisLoader(false);
+    const selectedData = deleteselectedCategory;
+  
+    if (selectedData.isActive === true) {
+      selectedData.isActive = false;
+    }
+    console.log(JSON.stringify(selectedData));
+    
+    //alert('delete' + JSON.stringify(selectedData));
+
+    API.post('/categories/update',selectedData,{
+      headers : {
+        'content-type': 'application/json'
+      }
+    })
+      .then(res =>  {
+        setisLoader(true);
+        alert('Record updated Successfully');
+        console.log(res)
+      
+      })
+      .catch(err => {
+        setisLoader(true);
+        console.log(err);
+      });
+
+  }
+  const deleteCategory =(h ,index) => {
+    
+    setselecteddeleteCategory(h);
+
+  }
   const showEditCategory  = (index) => {
 
     //seteditCategoryList(isFlag);
@@ -62,7 +96,6 @@ const CategoryList = () => {
   
   useEffect(() => {
         
-    debugger;
     let categoryListData =  API.get('/categories');
     categoryListData.then((response) =>{
         console.log(response.data.data.categories);
@@ -108,7 +141,7 @@ const CategoryList = () => {
         <div className= {'dropdown-content i' + index}>
         {currentIndex == index ? <div><A onClick={() => showEditCategory('true',index)} href="/editcategory"><i className="fa fa-pencil"></i>Save</A>
            <A href="" onClick={() => showEditCategory(-1)} data-toggle="modal" data-backdrop="static" data-keyboard="false"><i className="fa fa-trash"></i>Cancel</A></div> : <div><A onClick={() => showEditCategory(index)} href=""><i className="fa fa-pencil"></i>Modify</A>
-            <A href="#confimPopupBox" data-toggle="modal" data-backdrop="static" data-keyboard="false"><i className="fa fa-trash"></i>Delete</A> </div>}
+            <A id = "modalpopup" onClick={() => deleteCategory(h,index)} href="#confimPopupBox" data-toggle="modal" data-backdrop="static" data-keyboard="false"><i className="fa fa-trash"></i>Delete</A> </div>}
             
         </div>        
     </div>
@@ -150,6 +183,15 @@ const CategoryList = () => {
   return (
     <div>
         <section>
+        <Loader loaded={isLoader} style={{position: 'fixed',
+  top: '0',
+  right: '0',
+  bottom: '0',
+  left: '',
+  background: 'none repeat scroll 0 0 black',
+  opacity:'0.5',
+  zIndex: '9999',
+  }}></Loader>
 <div className="container-fluid content mt-4">
 <div className="row">
    <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12">
@@ -191,7 +233,7 @@ const CategoryList = () => {
                   *Place your success message here.*
                 </div>
                 <div className="form-group mt-5">
-                  <input type="button" className="button modal-button-yes-color" value="Yes" />
+                  <input type="button" className="button modal-button-yes-color" value="Yes" data-dismiss="modal" onClick={() => onhandleDelete()}/>
                   <input type="button" className="button modal-button-no-color" data-dismiss="modal" value="No" />
                 </div>
               </div>

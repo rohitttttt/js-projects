@@ -1,203 +1,261 @@
 import React from "react";
 import './index.css';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
+import AddQuestion from '../addquestions/index';
 
-const AddTopic = () => {
+class AddTopic extends React.Component {
+   constructor(props)
+   {
+     super(props);
+     this.state = {
+      
+      selectLevelValue : '',
+      selectCategoryValue:'',
+      selectThemeValue:'',
+      selectTitleValue:'',
+      selectNameValue:'',
+      selectKeywordValue:'',
+      selectIntroductoryValue:'',
+      selectDiscussionValue:'',
+      selectConclusionValue:'',
+      selectVideoLinkValue:'',
+      selectImageLinkValue:'',
+      selectMustReadValue:'',
+      selectReferenceValue:'',
+      isQuiz : 'No',
+     }
+     this.handleLevelChange = this.handleLevelChange.bind(this);
+     this.handleCategoryChange=this.handleCategoryChange.bind(this);
+     this.handleThemeChange = this.handleThemeChange.bind(this);
+     this.handleTitleChange=this.handleTitleChange.bind(this);
+     this.handleNameChange=this.handleNameChange.bind(this);
+     this.handleKeyWordChange=this.handleKeyWordChange.bind(this);
+     this.handleIntroductoryChange=this.handleIntroductoryChange.bind(this);
+     this.handleDiscussionChange=this.handleDiscussionChange.bind(this);
+     this.handleConclusionChange=this.handleConclusionChange.bind(this);
+     this.handleVideoLinkChange=this.handleVideoLinkChange.bind(this);
+     this.handleImageLinkChange=this.handleImageLinkChange.bind(this);
+     this.handleMustReadChange=this.handleMustReadChange.bind(this);
+     this.handleReferenceChange=this.handleReferenceChange.bind(this);
+     this.handleQuiz=this.handleQuiz.bind(this);
 
+   }
+   handleLevelChange(e)
+   {
+    this.setState({ selectLevelValue: e.target.value });
+   }
+   handleCategoryChange(e)
+   {
+     this.setState({selectCategoryValue : e.target.value})
+   }
+   handleThemeChange(e)
+   {
+    this.setState({selectThemeValue : e.target.value})
+   }
+   handleTitleChange(e)
+   {
+    this.setState({selectTitleValue : e.target.value})
+   }
+   handleNameChange(e)
+   {
+    this.setState({selectNameValue : e.target.value})
+   }
+   handleKeyWordChange(e){
+    this.setState({selectKeywordValue : e.target.value})
+   }
+   handleIntroductoryChange(e)
+   {
+    this.setState({selectIntroductoryValue : e.target.value})
+   }
+   handleDiscussionChange(e)
+   {
+    this.setState({selectDiscussionValue : e.target.value})
+   }
+   handleVideoLinkChange(e)
+   {
+    this.setState({selectVideoLinkValue : e.target.value})
+   }
+   handleImageLinkChange(e)
+   {
+    this.setState({selectImageLinkValue : e.target.value})
+   }
+   handleMustReadChange(e)
+   {
+    this.setState({selectMustReadValue : e.target.value})
+   }
+   handleReferenceChange(e)
+   {
+    this.setState({selectMustReadValue : e.target.value})
+   }
+   handleConclusionChange(e)
+   {
+    this.setState({selectConclusionValue : e.target.value})
+   }
+   handleQuiz(e)
+   {
+    this.setState({isQuiz : e.target.value})
+   }
+  
+  render(){
     return (
-        <section>
+      <section>
 <div className="container-fluid content mt-4">
 <div className="row">
-   <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12">
-    <strong>What do you want to do?</strong>
-   </div>
+ <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+  <strong>What do you want to do?</strong>
  </div>
- <div className="row content-message mt-2">
-  <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
-    <input type="button" value="Add Topic" />
+</div>
+<div className="row content-message mt-2">
+<div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
+  <input type="button" value="Add Topic" />
+</div>
+<div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-2">
+  <input type="button" value="Edit Topic" />
+</div>
+<div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-3">
+  <input type="button" value="Remove Topic" />
+</div>
+</div>
+<div className="row item-margin pt-2">
+  <div className="col-lg-2 col-md-2 col-sm-6 col-xs-12 mt-1">
+      Choose Theme:
   </div>
-  <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-2">
-    <input type="button" value="Edit Topic" />
-  </div>
-  <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-3">
-    <input type="button" value="Remove Topic" />
+  <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <select disabled value={this.state.selectThemeValue} onChange={this.handleThemeChange}>
+          <option value="Please Select">Please Select</option>
+          <option value="I Learn">I Learn</option>
+          <option value="I Assess">I Assess</option>
+      </select>
   </div>
 </div>
 <div className="row item-margin pt-2">
-    <div className="col-lg-2 col-md-2 col-sm-6 col-xs-12 mt-1">
-        Choose Theme:
-    </div>
-    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <select disabled>
-            <option value="I Learn">I Learn</option>
-            <option value="I Assess">I Assess</option>
-        </select>
-    </div>
-</div>
-<div className="row item-margin pt-2">
-    <div className="col-lg-2 col-md-2 col-sm-6 col-xs-12 mt-1">
-        Choose Level:
-    </div>
-    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <select>
-            <option value="Foundation">Foundation</option>
-            <option value="Item 2">Item 2</option>
-        </select>
-    </div>
+  <div className="col-lg-2 col-md-2 col-sm-6 col-xs-12 mt-1">
+      Choose Level:
+  </div>
+  <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <select value={this.state.selectLevelValue} onChange={this.handleLevelChange}>
+          <option value="Please Select">Please Select</option>
+          <option value="Foundation">Foundation</option>
+          <option value="Item 2">Item 2</option>
+      </select>
+  </div>
 </div>
 <div className="row form-group item-margin pt-2">
-    <div className="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-      Choose Category:
-    </div>
-    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <select>
-        <option value="Foundation">Health and Hygiene</option>
-        <option value="Item 2">Item 2</option>
-    </select>
-    </div>
-</div>
-<div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
-    Enter Topic Details :
+  <div className="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+    Choose Category:
   </div>
-  <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-2">
-    <input type="text" name="title" className="form-control input-border pl-4" placeholder="Topic Title"/>
-  </div>
-  <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-3">
-    <input type="text" name="by" className="form-control input-border pl-4" placeholder="By ( Name )"/>
-  </div>
-  <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 order-4">
-    <input type="text" name="keywords" className="form-control input-border full-width pl-4" placeholder="Keywords"/>
+  <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <select value={this.state.selectCategoryValue} onChange={this.handleCategoryChange}>
+    <option value="Please Select">Please Select</option>
+      <option value="Foundation">Health and Hygiene</option>
+      <option value="Item 2">Item 2</option>
+  </select>
   </div>
 </div>
 <div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
-    Introductory Text :
-  </div>
-  <div className="col-lg-7 col-md-4 col-sm-6 col-xs-12 order-2">
-    <textarea name="IntroPara" className="form-control multiline-text full-width pl-4 editor" placeholder="Type here.."> </textarea>
-  </div>
+<div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
+  Enter Topic Details :
+</div>
+<div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-2">
+  <input type="text" value = {this.state.selectTitleValue}onChange = {this.handleTitleChange}name="title" className="form-control input-border pl-4" placeholder="Topic Title"/>
+</div>
+<div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-3">
+  <input type="text" value = {this.state.selectNameValue}onChange = {this.handleNameChange} name="by" className="form-control input-border pl-4" placeholder="By ( Name )"/>
+</div>
+<div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 order-4">
+  <input type="text" value = {this.state.selectKeywordValue}onChange = {this.handleKeyWordChange} name="keywords" className="form-control input-border full-width pl-4" placeholder="Keywords"/>
+</div>
 </div>
 <div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
-    Discussion Text :
-  </div>
-  <div className="col-lg-7 col-md-8 col-sm-6 col-xs-12 order-2">
-    <textarea name="DiscPara" className="form-control multiline-text full-width pl-4 editor" placeholder="Type here.."> </textarea>
-  </div>
+<div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
+  Introductory Text :
+</div>
+<div className="col-lg-7 col-md-4 col-sm-6 col-xs-12 order-2">
+  <textarea value = {this.state.selectIntroductoryValue}onChange = {this.handleIntroductoryChange} name="IntroPara" className="form-control multiline-text full-width pl-4 editor" placeholder="Type here.."> </textarea>
+</div>
+</div>
+<div className="row item-margin mt-3">
+<div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
+  Discussion Text :
+</div>
+<div className="col-lg-7 col-md-8 col-sm-6 col-xs-12 order-2">
+  <textarea value = {this.state.selectDiscussionValue}onChange = {this.handleDiscussionChange}  name="DiscPara" className="form-control multiline-text full-width pl-4 editor" placeholder="Type here.."> </textarea>
+</div>
 </div>
 <div className="row">
-  <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
-  </div>
-  <div className="col-lg-6 col-md-8 col-sm-6 col-xs-12 addCategoryLink order-2">
-    + Add More Discussion Paragraph (Add Text Area)
-  </div>
+<div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
+</div>
+<div className="col-lg-6 col-md-8 col-sm-6 col-xs-12 addCategoryLink order-2">
+  + Add More Discussion Paragraph (Add Text Area)
+</div>
 </div>
 <div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
-    Conclusion Text :
-  </div>
-  <div className="col-lg-7 col-md-8 col-sm-6 col-xs-12 order-2">
-    <textarea name="ConcPara" className="form-control multiline-text full-width pl-4 editor" placeholder="Type here.."> </textarea>
-  </div>
+<div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 order-1">
+  Conclusion Text :
+</div>
+<div className="col-lg-7 col-md-8 col-sm-6 col-xs-12 order-2">
+  <textarea value = {this.state.selectConclusionValue}onChange = {this.handleConclusionChange} name="ConcPara" className="form-control multiline-text full-width pl-4 editor" placeholder="Type here.."> </textarea>
+</div>
 </div>
 <div className="row item-margin mt-3">
- <div className="col-lg-2 md-4 col-sm-6 col-xs-12 order-1">
-   Video Link/ Embed Code :
+<div className="col-lg-2 md-4 col-sm-6 col-xs-12 order-1">
+ Video Link/ Embed Code :
+</div>
+<div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 order-2">
+<input type="text" value = {this.state.selectVideoLinkValue}onChange = {this.handleVideoLinkChange} name="VideoLink" className="form-control input-border full-width pl-4" placeholder="Copy link or type URL"/>
+</div>
+<div className="col-lg-4 col-md-5 col-sm-6 col-xs-12 order-3">
+ <div className="row">
+  <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 order 1 text-right pt-2">
+    Image Link :
+  </div>
+  <div className="col-lg-8 col-md-6 col-sm-6 col-xs-12 order-2">
+   <input type="text" value = {this.state.selectImageLinkValue}onChange = {this.handleImageLinkChange} name="ImageLink" className="form-control input-border full-width" placeholder="Copy link or Add"/>
+  </div>
  </div>
- <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 order-2">
-  <input type="text" name="VideoLink" className="form-control input-border full-width pl-4" placeholder="Copy link or type URL"/>
+</div>
+</div>
+<div className="row item-margin mt-3">
+ <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12 order-1">
+    Must Read :
  </div>
- <div className="col-lg-4 col-md-5 col-sm-6 col-xs-12 order-3">
-   <div className="row">
-    <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 order 1 text-right pt-2">
-      Image Link :
-    </div>
-    <div className="col-lg-8 col-md-6 col-sm-6 col-xs-12 order-2">
-     <input type="text" name="ImageLink" className="form-control input-border full-width" placeholder="Copy link or Add"/>
-    </div>
-   </div>
+ <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 order-2">
+  <textarea value = {this.state.selectMustReadValue}onChange = {this.handleMustReadChange} name="mustRead" className="form-control multiline-text full-width pl-4" placeholder="Type here.."> </textarea>
  </div>
 </div>
- <div className="row item-margin mt-3">
-   <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12 order-1">
-      Must Read :
-   </div>
-   <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 order-2">
-    <textarea name="mustRead" className="form-control multiline-text full-width pl-4" placeholder="Type here.."> </textarea>
-   </div>
- </div>
- <div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12 order-1">
-     References :
-  </div>
-  <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 order-2">
-   <textarea name="references" className="form-control multiline-text full-width pl-4" placeholder="Mention References"> </textarea>
-  </div>
+<div className="row item-margin mt-3">
+<div className="col-lg-2 col-md-6 col-sm-6 col-xs-12 order-1">
+   References :
+</div>
+<div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 order-2">
+ <textarea value = {this.state.selectReferenceValue}onChange = {this.handleReferenceChange} name="references" className="form-control multiline-text full-width pl-4" placeholder="Mention References"> </textarea>
+</div>
 </div>
 <div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12 order-1">
-    Add Quiz :
-  </div>
-  <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 order-2">
-    <input type="button" className="button" value="Yes" />
-    <input type="button" className="button ml-2" value="No" />
-  </div>
+<div className="col-lg-2 col-md-6 col-sm-6 col-xs-12 order-1">
+  Add Quiz :
 </div>
-<div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-    <h3>Quiz</h3>
-  </div>
+<div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 order-2">
+  <input type="button" className="button" value="Yes" onClick={this.handleQuiz} />
+  <input type="button" className="button ml-2" value="No" onClick={this.handleQuiz}/>
 </div>
-<div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12 order-1">
-    Enter Question 1 :
-  </div>
-  <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 order-2">
-    <input type="text" name="ques1" className="form-control input-border full-width" placeholder="Type here.."/>
-   </div>
 </div>
-<div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12 order-1">
-    Option 1 :
-  </div>
-  <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 order-2">
-    <input type="text" name="ansCh1" className="form-control input-border full-width" placeholder="Answer Choice"/>
-   </div>
-</div>
-<div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12 order-1">
-    Option 2 :
-  </div>
-  <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 order-2">
-    <input type="text" name="ansCh2" className="form-control input-border full-width" placeholder="Answer Choice"/>
-   </div>
-   <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 addCategoryLink order-3">
-     + Add Another Options
-   </div>
-</div>
-<div className="row item-margin mt-3">
-  <div className="col-lg-2 col-md-6 col-sm-6 col-xs-12 order-1">
-    Correct Answer :
-  </div>
-  <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 order-2">
-    <input type="text" name="ans1" className="form-control input-border full-width" placeholder="Right Answer"/>
-   </div>
-</div>
-<div className="row item-margin mt-3">
-  <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 addCategoryLink">
-    + Add Another Question
-  </div>
-</div>
+<AddQuestion/>
 <div className="row col form-group item-margin mt-3">
-  <div className="col-lg-1 col-md-2 col-sm-6 col-xs-6">
-    <input type="button" className="button" value="Upload" />
-  </div>
-  <div className="col-lg-1 col-md-2 col-sm-6 col-xs-6 ml-3">
-    <input type="button" className="button pt-1" value="Cancel" />
-  </div>
+<div className="col-lg-1 col-md-2 col-sm-6 col-xs-6">
+  <input type="button" className="button" value="Upload" />
+</div>
+<div className="col-lg-1 col-md-2 col-sm-6 col-xs-6 ml-3">
+  <input type="button" className="button pt-1" value="Cancel" />
 </div>
 </div>
-</section>);};
+</div>
+</section>)
+
+  }
+}
+// const AddTopic = () => {
+
+//     ;};
                                       
 export default AddTopic;
