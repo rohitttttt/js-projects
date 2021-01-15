@@ -2,6 +2,12 @@ import React from "react";
 import './index.css';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import AddQuestion from '../addquestions/index';
+import API from "../../utils/api";
+import '../../../node_modules/react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+//import Loader from 'react-loader-spinner';
+import Loader from 'react-loader';
+import Axios from "axios";
+
 
 class AddTopic extends React.Component {
    constructor(props)
@@ -23,6 +29,8 @@ class AddTopic extends React.Component {
       selectMustReadValue:'',
       selectReferenceValue:'',
       isQuiz : 'No',
+      isLoader:true,
+      questions:''
      }
      this.handleLevelChange = this.handleLevelChange.bind(this);
      this.handleCategoryChange=this.handleCategoryChange.bind(this);
@@ -38,6 +46,8 @@ class AddTopic extends React.Component {
      this.handleMustReadChange=this.handleMustReadChange.bind(this);
      this.handleReferenceChange=this.handleReferenceChange.bind(this);
      this.handleQuiz=this.handleQuiz.bind(this);
+     this.handleUpload=this.handleUpload.bind(this);
+     this.handleQuestionsans=this.handleQuestionsans.bind(this);
 
    }
    handleLevelChange(e)
@@ -85,7 +95,7 @@ class AddTopic extends React.Component {
    }
    handleReferenceChange(e)
    {
-    this.setState({selectMustReadValue : e.target.value})
+    this.setState({selectReferenceValue : e.target.value})
    }
    handleConclusionChange(e)
    {
@@ -95,10 +105,87 @@ class AddTopic extends React.Component {
    {
     this.setState({isQuiz : e.target.value})
    }
+   handleQuestionsans(inputlist)
+   {
+     this.setState({questions : inputlist})
+   }
+   handleUpload()
+   {
+    this.setState({isLoader : false});
+    var d = new Date()
+    if(this.state.theme !== '')
+    {
+      const payload = {
+        theme: this.state.selectThemeValue,
+        level: this.state.selectLevelValue,
+        category: this.state.selectCategoryValue,
+        title: this.state.selectTitleValue,
+        by:this.state.selectNameValue,
+        keywords:this.state.selectKeywordValue,
+        intropara:this.state.selectIntroductoryValue,
+        discpara:this.state.selectDiscussionValue,
+        concpara:this.state.selectConclusionValue,
+        videourl:this.state.selectVideoLinkValue,
+        imageurl:this.state.selectImageLinkValue,
+        mustread:this.state.selectMustReadValue,
+        references:this.state.selectReferenceValue,
+        question:this.state.questions,
+        isActive:'true',
+        isApproved:'true',
+        created_by:'rohit',
+        updated_by:'rohit',
+        updated_date:'',
+      };
+
+    //console.log(JSON.parse(JSON.stringify(payload)));
+    var ss = JSON.stringify(payload);
+    console.log(ss);
+    const options = {
+      headers: {'Content-Type': 'application/json'}
+    };
+
+    API.post('/topics/create',
+      ss)
+      .then(res =>  {
+        alert('Topic Added Successfully');
+        this.setState({isLoader : true});
+        console.log(res)
+      
+      })
+      .catch(err => {
+        this.setState({isLoader : true});
+        console.log(err)});
+    }
+    else
+    {
+      this.setState({isLoader : true});
+      alert('Please fill all the required field');
+    }
+   }
   
   render(){
     return (
       <section>
+        <div style={{textAlign : 'center'}}>
+          {/* <Loader
+    type="Puff"
+    color="#00BFFF"
+    height={100}
+    width={100}
+    visible= {this.state.isLoader}
+   // timeout={3000} //3 secs
+
+ /> */}
+ <Loader loaded={this.state.isLoader} style={{position: 'fixed',
+  top: '0',
+  right: '0',
+  bottom: '0',
+  left: '',
+  background: 'none repeat scroll 0 0 black',
+  opacity:'0.5',
+  zIndex: '9999',
+  }}></Loader>
+          </div>
 <div className="container-fluid content mt-4">
 <div className="row">
  <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12">
@@ -121,7 +208,7 @@ class AddTopic extends React.Component {
       Choose Theme:
   </div>
   <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <select disabled value={this.state.selectThemeValue} onChange={this.handleThemeChange}>
+      <select value={this.state.selectThemeValue} onChange={this.handleThemeChange}>
           <option value="Please Select">Please Select</option>
           <option value="I Learn">I Learn</option>
           <option value="I Assess">I Assess</option>
@@ -240,10 +327,10 @@ class AddTopic extends React.Component {
   <input type="button" className="button ml-2" value="No" onClick={this.handleQuiz}/>
 </div>
 </div>
-<AddQuestion/>
+<AddQuestion onSelectQuestionsans={this.handleQuestionsans}/>
 <div className="row col form-group item-margin mt-3">
 <div className="col-lg-1 col-md-2 col-sm-6 col-xs-6">
-  <input type="button" className="button" value="Upload" />
+  <input type="button" className="button" value="Upload" onClick ={this.handleUpload} />
 </div>
 <div className="col-lg-1 col-md-2 col-sm-6 col-xs-6 ml-3">
   <input type="button" className="button pt-1" value="Cancel" />
